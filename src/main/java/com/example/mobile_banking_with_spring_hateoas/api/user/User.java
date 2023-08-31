@@ -35,14 +35,5 @@ public class User {
     private Boolean isDeleted;
     private Boolean isVerified;
 
-    public Account getAccountByUuid(String accountUuid) {
-        List<UserAccount> userAccounts = new ArrayList<>();
-        for (UserAccount userAccount : userAccounts) {
-            if (userAccount.getAccount().getUuid().equals(accountUuid)) {
-                return userAccount.getAccount();
-            }
-        }
-        return null;
-    }
 
 }

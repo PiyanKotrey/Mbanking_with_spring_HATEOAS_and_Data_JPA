@@ -13,4 +13,5 @@ public interface AccountService {
     EntityModel<?> renameAccountByUuid(String uuid, RenameDto renameDto);
     EntityModel<?> changeTransferLimitByUuid
             (String uuid, ChangeTransferLimitDto changeTransferLimitDto);
+    String closedAccByUuid(String uuid);
 }

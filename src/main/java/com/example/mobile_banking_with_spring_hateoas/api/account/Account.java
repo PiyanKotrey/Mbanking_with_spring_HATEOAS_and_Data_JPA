@@ -26,6 +26,7 @@ public class Account {
     private String pin;
     private BigDecimal transferLimit;
     private BigDecimal balance;
+    private Boolean isStatus;
     @ManyToOne
     private AccountType accountType;
 }

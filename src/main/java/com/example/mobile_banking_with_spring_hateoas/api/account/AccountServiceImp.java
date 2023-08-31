@@ -3,6 +3,7 @@ package com.example.mobile_banking_with_spring_hateoas.api.account;
 import com.example.mobile_banking_with_spring_hateoas.api.account.web.ChangeTransferLimitDto;
 import com.example.mobile_banking_with_spring_hateoas.api.account.web.CreateAccountDto;
 import com.example.mobile_banking_with_spring_hateoas.api.account.web.RenameDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -61,5 +62,16 @@ public class AccountServiceImp implements AccountService{
             return accountAssembler.toModel(account);
         }
         throw new RuntimeException("Not Found with this uuid");
+    }
+    @Transactional
+    @Override
+    public String closedAccByUuid(String uuid) {
+        Optional<Account> optionalAccount = accountRepository.findAccountByUuid(uuid);
+        if (optionalAccount.isPresent()){
+            Account account = optionalAccount.get();
+            account.setIsStatus(false);
+            accountRepository.save(account);
+        }
+        return "Account with UUID " + uuid + " is now disabled.";
     }
 }

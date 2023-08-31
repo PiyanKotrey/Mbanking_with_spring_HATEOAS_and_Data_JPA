@@ -37,4 +37,8 @@ public class AccountController {
             @RequestBody ChangeTransferLimitDto changeTransferLimitDto){
         return accountService.changeTransferLimitByUuid(uuid, changeTransferLimitDto);
     }
+    @PutMapping("/{uuid}/close")
+    public String closeAccount(@PathVariable String uuid){
+        return accountService.closedAccByUuid(uuid);
+    }
 }
